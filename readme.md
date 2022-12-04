@@ -4,4 +4,4 @@
 
 [view](https://roboedweb.github.io/numbers.game)
 
-! (https://github.com/roboedweb/numbers.game/blob/main/logo.png)
+![logo](https://github.com/roboedweb/numbers.game/blob/main/logo.png)
