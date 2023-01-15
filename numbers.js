@@ -36,23 +36,26 @@ function numbersGame() {
     let diapozon = Number(slider.value);
     
     let tries;
-    // switch (diapozon) {
-    //     case 50:
-    //         tries = 5;
-    //         break;
-    //     case 100:
-    //         tries = 7;
-    //         break;
-    //     case 200:
-    //         tries = 10;
-    //         break;
-    //     default:
-    //         tries = 3;
-    // }
+    
 
     let triesButton = document.getElementsByName('tries');
     for(let i=0; i<triesButton.length; i++) {
-        
+        if (triesButton[i].checked) {
+            switch (triesButton[i].id) {
+            case easy:
+                tries = 15;
+                break;
+            case medium:
+                tries = 10;
+                break;
+            case hard:
+                tries = 5;
+                break;
+            default:
+                tries = 3;
+            }
+            break;
+        }
     }
 
     const randomNumber = Math.floor(Math.random() * diapozon + 1);
