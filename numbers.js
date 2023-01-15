@@ -1,31 +1,60 @@
+const slider = document.getElementById("myRange");
+const maxWindow = document.querySelector('.max');
+const minus = document.querySelector('.minus');
+const plus = document.querySelector('.plus');
+const diapozonAlert = document.querySelector('.diapozon');
+maxWindow.innerHTML = slider.value;
+diapAlert();
+
+slider.oninput = function() {
+    maxWindow.innerHTML = slider.value;
+    diapAlert();
+}
+
+const start = document.getElementById("start");
+start.addEventListener('click', numbersGame);
+minus.addEventListener('click', sliderminus);
+plus.addEventListener('click', sliderplus);
+
+function sliderminus() {
+    slider.value--;
+    maxWindow.innerHTML = slider.value;
+    diapAlert();
+}
+
+function sliderplus() {
+    slider.value++;
+    maxWindow.innerHTML = slider.value;
+    diapAlert();
+}
+
+function diapAlert() {
+    diapozonAlert.innerHTML = `Потрібно вгадати число в діапазоні від 1 до ${slider.value}`;
+}
+
 function numbersGame() {
-    let diapozon = +prompt('Ведіть інтервал від 2 до ...');
-
-    while (true) {
-        if (isNaN(diapozon)) {
-            alert('Потрібно ввести число!');
-            diapozon = +prompt('Ведіть інтервал від 2 до ...');
-        }
-        else {
-            break;    
-        }
-    }
-
-    alert(`Потрібно вгадати число в діапазоні від 1 до ${diapozon}`);
+    let diapozon = Number(slider.value);
+    
     let tries;
-    switch (diapozon) {
-        case 50:
-            tries = 5;
-            break;
-        case 100:
-            tries = 7;
-            break;
-        case 200:
-            tries = 10;
-            break;
-        default:
-            tries = 3;
+    // switch (diapozon) {
+    //     case 50:
+    //         tries = 5;
+    //         break;
+    //     case 100:
+    //         tries = 7;
+    //         break;
+    //     case 200:
+    //         tries = 10;
+    //         break;
+    //     default:
+    //         tries = 3;
+    // }
+
+    let triesButton = document.getElementsByName('tries');
+    for(let i=0; i<triesButton.length; i++) {
+        
     }
+
     const randomNumber = Math.floor(Math.random() * diapozon + 1);
     let number;
 
@@ -45,18 +74,4 @@ function numbersGame() {
                 alert(`У вас залишилось ${tries - i} спроб`);
             }
         }
-}
-numbersGame();
-
-while (true) {
-    let Continue = prompt('Ще раз?', '1 - ТАК, 2 - НІ');
-    if (Continue == 1) {
-        numbersGame();
-    }
-    else if (Continue == 2) {
-        break;
-    }
-    else {
-        alert('Потрібно ввести 1 чи 2');
-    }
 }

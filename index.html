@@ -1,14 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Numbers Game</title>
-    
+    <title>Numbers Game version 0.1</title>
+    <link rel="stylesheet" href="numbers_style.css">
 </head>
 <body>
-    <h1>Numbers Game</h1>
-    <script src="numbers.js"></script> 
+    
+    <div class="slide-container">
+        <div class="min">1</div>
+        <div class="slide-wrapper">
+            <input type="range" id="myRange" class="slide" min="2" max="250" value="125">
+        </div>
+        <div class="max"></div>
+    </div>
+    
+    <div class="plusminus">
+        <a href="#" class="minus">-</a>
+        <a href="#" class="plus">+</a>
+    </div>
+
+    <div class="attention">
+        Виберіть повзунком (чи -/+) максимум для діапазону з якого буде загадано число і рівень складности, та натисніть кнопку СТАРТ
+    </div>
+
+    <div class="tries-group">
+        <input type="radio" name="tries" id="easy" value="15">
+        <label for="easy">Easy</label>
+        <input type="radio" name="tries" id="medium" value="10" checked>
+        <label for="medium">Medium</label>
+        <input type="radio" name="tries" id="hard" value="5">
+        <label for="hard">Hard</label>
+        <input type="radio" name="tries" id="extreme" value="3">
+        <label for="extreme">Extreme</label>
+    </div>
+
+    <button id="start">СТАРТ</button>
+
+    <div class="diapozon"></div>
+    
+    <script defer src="numbers.js"></script>
+
 </body>
 </html>
