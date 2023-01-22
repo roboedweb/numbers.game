@@ -41,20 +41,18 @@ function numbersGame() {
     let triesButton = document.getElementsByName('tries');
     for(let i=0; i<triesButton.length; i++) {
         if (triesButton[i].checked) {
-            switch (triesButton[i].id) {
-            case easy:
+            if (triesButton[i].id == 'easy') {
                 tries = 15;
-                break;
-            case medium:
+            }
+            else if (triesButton[i].id == 'medium') {
                 tries = 10;
-                break;
-            case hard:
+            }
+            else if (triesButton[i].id == 'hard') {
                 tries = 5;
-                break;
-            default:
+            }
+            else if (triesButton[i].id == 'extreme') {
                 tries = 3;
             }
-            break;
         }
     }
 
