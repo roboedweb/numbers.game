@@ -132,3 +132,10 @@ label {
     outline: 0;
     box-shadow: 0 0 0 0.15em rgba(50, 50, 255, 0.15);
 }
+.info-wrapper {
+    width: 60%;
+    text-align: center;
+    font-size: 2em;
+    padding-top: 1em;
+    color: red;
+}
