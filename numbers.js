@@ -5,7 +5,10 @@ const plus = document.querySelector('.plus');
 const diapozonAlert = document.querySelector('.diapozon');
 const numberField = document.getElementById('search-number');
 const infoField = document.querySelector('.info-wrapper');
+const historyTitle = document.querySelector('.history-title');
+const historyNumbers = document.querySelector('.history-numbers');
 let diapozon, tries, randomNumber, number;
+let history = [];
 maxWindow.innerHTML = slider.value;
 
 numberField.disabled = true;
@@ -39,29 +42,51 @@ function diapAlert() {
 
 function numbersGame(i) {
     document.querySelector(".number-icon").onclick = function() {
-        number = numberField.value;
+        number = Math.floor(Number(numberField.value));
         numberField.value = '';
         if (i <= tries && i > 0) {
-            if (isNaN(Number(number)) || Number(number) == 0) {
+            if (isNaN(number) || number == 0 || number < 0) {
                 infoField.innerHTML = 'Введіть, будь ласка, коректне число!';
                 i--;
             }
-            else if(Number(number) < randomNumber) {
-                infoField.innerHTML = 'Загадане число більше за введене<br>' + `У вас залишилось ${tries - i} спроб`;
+            else if (number > diapozon) {
+                infoField.innerHTML = 'Введене число не може бути більшим за максимальний діапазон';
+                i--;
             }
-            else if(Number(number) == randomNumber){
+            else if (history.includes(number)) {
+                infoField.innerHTML = `Ви вже вводили число ${number}`;
+                i--;
+            }
+            else if(number < randomNumber) {
+                infoField.innerHTML = 'Загадане число більше за введене<br>' + `У вас залишилось ${tries - i} спроб`;
+                history.push(number);
+                historyTitle.innerHTML = 'Ви вводили раніше:';
+                historyNumbers.innerHTML = '';
+                historyRender();
+            }
+            else if(number == randomNumber){
                 infoField.innerHTML = 'Ви виграли! Супер!<br>' + `Ви вгадали за ${i} спроб `;
                 numberField.disabled = true;
                 start.disabled = false;
+                historyNumbers.innerHTML = '';
+                historyTitle.innerHTML = '';
+                history = [];
             }
             else{
                 infoField.innerHTML = 'Загадане число менше за введене<br>' + `У вас залишилось ${tries - i} спроб`;
+                history.push(number);
+                historyTitle.innerHTML = 'Ви вводили раніше:';
+                historyNumbers.innerHTML = '';
+                historyRender();
             }
         }
         else {
-            infoField.innerHTML = 'Ви, на жаль, програли';
+            infoField.innerHTML = `Ви, на жаль, програли :( <br> Було загадане число ${randomNumber}`;
             numberField.disabled = true;
             start.disabled = false;
+            historyNumbers.innerHTML = '';
+            historyTitle.innerHTML = '';
+            history = [];
         }
         i++;
     }
@@ -69,6 +94,7 @@ function numbersGame(i) {
 
 function generateNum() {
     diapozon = Number(slider.value);
+    infoField.innerHTML = '';
     let triesButton = document.getElementsByName('tries');
     for(let i=0; i<triesButton.length; i++) {
         if (triesButton[i].checked) {
@@ -98,3 +124,10 @@ document.getElementById('search-number').addEventListener('keypress', function(e
         document.querySelector('.number-icon').click();
     }
 });
+
+function historyRender() {
+    for (let i = 0; i < history.length; i++) {
+        if (history[i] < randomNumber) historyNumbers.innerHTML += `<div class="history-item">${history[i]} &dArr;</div>`;
+        else historyNumbers.innerHTML += `<div class="history-item">${history[i]} &uArr;</div>`;
+    }
+}

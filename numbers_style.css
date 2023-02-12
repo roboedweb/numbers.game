@@ -139,3 +139,25 @@ label {
     padding-top: 1em;
     color: red;
 }
+.history {
+    margin-top: 1em;
+}
+.history-title {
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+}
+.history-item {
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    color:blueviolet;
+    border: 2px dotted darkolivegreen;
+    margin: 10px;
+    width: 12vw;
+}
+.history-numbers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
